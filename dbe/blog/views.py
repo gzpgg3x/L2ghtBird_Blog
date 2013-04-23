@@ -3,6 +3,9 @@ from django.core.urlresolvers import reverse
 
 from django.shortcuts import render_to_response
 
+from django.core.context_processors import csrf
+# from django.forms import ModelForm
+
 from blog.models import *
 
 def main(request):
@@ -19,3 +22,13 @@ def main(request):
         posts = paginator.page(paginator.num_pages)
 
     return render_to_response("list.html", dict(posts=posts, user=request.user))
+
+
+def post(request, pk):
+    """Single post with comments and a comment form."""
+    post = Post.objects.get(pk=int(pk))
+    d = dict(post=post, user=request.user)
+    return render_to_response("post.html", d)    
+
+
+

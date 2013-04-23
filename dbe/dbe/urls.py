@@ -20,5 +20,10 @@ admin.autodiscover()
 
 urlpatterns = patterns('blog.views',
     url(r'^admin/', include(admin.site.urls)),
-    (r'^main/$', "main"),
+    # (r'^$', "main"),
+    # (r"^(\d-)/$", "post"),
+    url(r'^', 'main'),
+    url(r'^(\d-)/$', 'post'),
+    url(r'^add_comment/(\d+)/$', 'add_comment'), 
+    # (r"^add_comment/(\d+)/$", "add_comment"),   
 )
